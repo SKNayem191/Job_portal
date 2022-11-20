@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Your Job Account</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body style="background-color: #EEEEEE;">
+    <style>
+        #id_gender{
+            display: inline-flex;
+        }
+        #id_gender_0, #id_gender_1, #id_gender_2{
+            margin: 0 0 0 10px;
+        }
+        .size{
+            display: inline-flex;
+        }
+        #id_phone{
+            margin: 24px 0 0 0;
+        }
+    </style>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="">
+                    <div class="row">
+                    <div class="col">
+                        <a href="{% url 'select-user' %}" class="btn btn-dark"><i class="fa-solid fa-circle-arrow-left">   back</i></a>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                                    {{ message }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                      <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+                          <div class="card-body">
+                              <h3 style="text-align: center;">Candidate's Registration Form</h3>
+                              <br>
+                              <form action="" method="POST" enctype="multipart/form-data">
+                                  {% csrf_token %}
+                                  <div class="row">
+                                      <h5>Account Information</h5>
+                                      <div class="col">
+                                          {{ usercreate.first_name }}
+                                      </div>
+                                      <div class="col">
+                                          {{ usercreate.last_name }}
+                                      </div>
+                                  </div>
+                                  <br>
+                                  <div class="row">
+                                      <div class="col">
+                                          {{ usercreate.username }}
+                                          {{ usercreate.username.error }}
+                                      </div>
+                                      <div class="col">
+                                          {{ usercreate.email }}
+                                          {% for error in field.errors %}
+                                            <p class="error">{{error}}</p>
+                                          {% endfor %}
+                                      </div>
+                                  </div>
+                                  <br/>
+                                  <div class="row">
+                                      <div class="col">
+                                           {{ usercreate.password1 }}
+                                          {% for error in field.errors %}
+                                            <p class="error">{{error}}</p>
+                                          {% endfor %}
+                                      </div>
+                                      <div class="col">
+                                          {{ usercreate.password2 }}
+                                          {% for error in field.errors %}
+                                            <p class="error">{{error}}</p>
+                                          {% endfor %}
+                                      </div>
+                                  </div>
+                                  <br/>
+                                  <div class="row">
+                                      <div class="col">
+                                        {{ stucreate.image }}
+                                      </div>
+                                      <div class="col-md-6" style="">
+                                         {{ stucreate.mobile }}
+                                          {% for error in field.errors %}
+                                            <p class="error">{{error}}</p>
+                                          {% endfor %}
+                                      </div>
+
+                                  </div>
+                                  <br>
+                                  <div class="row">
+                                      <div class="col">
+                                          Selact Your Gender :  {{ stucreate.gender }}
+                                      </div>
+
+                                  <br/>
+                                  <br/>
+                                  <div class="">
+                                      <button class="btn btn-dark" type="submit" name="submit"><i class="fa-solid fa-circle-arrow-right">   Register</i></button>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='First Name';
+		form_fields[1].className='form-control';
+		form_fields[2].placeholder='Last Name';
+		form_fields[2].className='form-control';
+		form_fields[3].placeholder='Username';
+		form_fields[3].className='form-control';
+		form_fields[4].placeholder='Email';
+		form_fields[4].className='form-control';
+		form_fields[5].placeholder='Password';
+		form_fields[5].className='form-control';
+		form_fields[6].placeholder='Confirm Password';
+		form_fields[6].className='form-control';
+		form_fields[7].className='form-control';
+		form_fields[8].placeholder='(+Country Code) Type your phone Number';
+		form_fields[8].className='form-control';
+
+
+		var form_selects = document.getElementsByTagName('select')
+		form_selects[0].className='form-control';
+
+    </script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+</body>
+</html>

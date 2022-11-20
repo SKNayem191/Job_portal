@@ -1,0 +1,25 @@
+
+{% load static %}
+
+{% block body %}
+
+
+{% include 'base.html' %}
+
+<marquee style=" font-weight : bold ; font-family:'Monotype Corsiva' ; font-size :20px ; color:black ; background-color: #e33424 ; margin-top :.7% ">
+    Admin Login
+</marquee>
+<hr>
+<form class="container mt-5" method="post">
+    {% csrf_token %}
+    <label><b> UserName </b></label>
+    <input type="text" class="form-control " name="uname" placeholder="Enter User Name">
+
+     <label><b> Password </b></label>
+    <input type="password" class="form-control " name="pwd" placeholder="Enter your password">
+
+    <input type="submit" class="btn btn-primary " style="margin-top :1%">
+
+</form>
+
+{% endblock %}

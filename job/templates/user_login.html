@@ -1,0 +1,39 @@
+{% load static %}
+
+{% block body %}
+
+
+{% include 'base.html' %}
+
+
+<marquee style=" font-weight : bold ; font-family:'Monotype Corsiva' ; font-size :20px ; color:black ; background-color: #e33424 ; margin-top :.7% ">
+    User Login
+</marquee>
+<hr>
+{% if messages %}
+<ul class="messages" style="padding: 0 0 0 500px; color: red; font-weight : bold ;">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form class="container mt-5 mb-5" method="POST">
+    {% csrf_token %}
+    <label><b> Email </b></label>
+    <input type="text" class="form-control " name="email" placeholder="Enter Your Email......">
+
+     <label><b> Password </b></label>
+    <input type="password" class="form-control " name="password" placeholder="Enter your password">
+
+    <input type="submit" value="Login" class="btn btn-primary " style="margin-top :1%">
+
+    <a href="{% url 'select-user' %}" class="btn btn-primary " style="margin-top :1%"> SignUp</a>
+
+</form>
+
+{% include 'footer.html' %}
+
+
+{% endblock %}
+
+
